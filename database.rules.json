@@ -6,10 +6,18 @@
         ".write": "$user_id === auth.uid"
       }
     },
-      "rooms": {
+    "rooms": {
         ".read": "auth !== null",
         ".write": "auth !== null",
-      "$room_id": {
+    "$room_id": {
+        ".read": "auth !== null",
+        ".write": "auth !== null"
+      }
+    },
+    "messages": {
+        ".read": "auth !== null",
+        ".write": "auth !== null",
+    "$message_id": {
         ".read": "auth !== null",
         ".write": "auth !== null"
       }
