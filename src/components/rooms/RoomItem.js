@@ -13,10 +13,6 @@ const RoomItem = ({ room }) => {
           className="font-normal text-black-45"
         />
       </div>
-
-      <div className="d-flex align-items-center text-black-70">
-        <span>No messages yet...</span>
-      </div>
     </div>
   );
 };

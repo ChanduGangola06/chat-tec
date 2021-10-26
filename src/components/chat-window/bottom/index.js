@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { useParams } from 'react-router';
 import { Alert, Icon, Input, InputGroup } from 'rsuite';
 import firebase from 'firebase/app';
+import { useParams } from 'react-router';
 import { useProfile } from '../../../context/profile.context';
 import { database } from '../../../misc/firebase';
 
@@ -23,7 +23,6 @@ const Bottom = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { chatId } = useParams();
-
   const { profile } = useProfile();
 
   const onInputChange = useCallback(value => {
@@ -40,7 +39,7 @@ const Bottom = () => {
 
     const updates = {};
 
-    const messageId = database.ref('message').push().key;
+    const messageId = database.ref('messages').push().key;
 
     updates[`/messages/${messageId}`] = msgData;
     updates[`/rooms/${chatId}/lastMessage`] = {

@@ -8,8 +8,8 @@ import ProfileAvatar from '../ProfileAvatar';
 
 const fileInputTypes = '.png, .jpeg, .jpg';
 
-const acceptedFilesTypes = ['image/png', 'image/jpeg', 'image/pjpeg'];
-const isValidFile = file => acceptedFilesTypes.includes(file.type);
+const acceptedFileTypes = ['image/png', 'image/jpeg', 'image/pjpeg'];
+const isValidFile = file => acceptedFileTypes.includes(file.type);
 
 const getBlob = canvas => {
   return new Promise((resolve, reject) => {
@@ -27,11 +27,8 @@ const AvatarUploadBtn = () => {
   const { isOpen, open, close } = useModalState();
 
   const { profile } = useProfile();
-
   const [img, setImg] = useState(null);
-
   const [isLoading, setIsLoading] = useState(false);
-
   const avatarEditorRef = useRef();
 
   const onFileInputChange = ev => {
@@ -42,9 +39,10 @@ const AvatarUploadBtn = () => {
 
       if (isValidFile(file)) {
         setImg(file);
+
         open();
       } else {
-        Alert.warning(`Wrong File type ${file.type}`, 4000);
+        Alert.warning(`Wrong file type ${file.type}`, 4000);
       }
     }
   };
