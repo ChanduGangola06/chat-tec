@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/storage';
+import 'firebase/messaging';
 
 const config = {
   apiKey: 'AIzaSyBy86ZSFs8tpmhdGFMzEhUjgUpULs63KvA',
@@ -22,3 +23,18 @@ export const auth = app.auth();
 export const database = app.database();
 
 export const storage = app.storage();
+
+export const messaging = firebase.messaging.isSupported()
+  ? app.messaging()
+  : null;
+
+if (messaging) {
+  messaging.usePublicVapidKey(
+    'BIZj4ZhZMtY1WcgZieacA19IHQ9uEG8BUEKKWHWtL62iGSqadZgi0wT0fPi8-JwHlYPTlouLPJ4d-WshhrMMQMw'
+  );
+
+  messaging.onMessage(data => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+  });
+}
